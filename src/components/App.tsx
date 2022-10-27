@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../css/App.css'
+import StartupOptions from './StartupOptions';
 import Editor from './Editor';
 
 function App() {
@@ -11,30 +12,12 @@ function App() {
   return (
     <div className="App">
       {
-        showOptions 
-        ? <div>
-            <h1>Set grid dimensions</h1>
-            <div>
-              <label>Height</label>
-              <input
-                name='height'
-                type='number'
-                value={height}
-                onChange={(e) => setHeight(parseInt(e.target.value))} 
-              />
-            </div>
-            <div>
-              <label>Width</label>
-              <input
-                name='width'
-                type='number'
-                value={width}
-                onChange={(e) => setWidth(parseInt(e.target.value))} 
-              />
-            </div>
-
-            <button onClick={() => setShowOptions(false)}>Start Drawing!</button>
-          </div> 
+        showOptions
+        ? <StartupOptions 
+            updateHeight={setHeight} 
+            updateWidth={setWidth}
+            updateShowOptions={setShowOptions}
+          />
         : <Editor height={height} width={width}/>
       }
     </div>
